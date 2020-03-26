@@ -8,11 +8,6 @@ Controller::Controller() : Repository()
 
 }
 
-Controller::~Controller()
-{
-
-}
-
 void Controller::add_med()
 {
 	cout << "Add med\n";
@@ -26,4 +21,24 @@ void Controller::delete_med()
 void Controller::update_med()
 {
 	cout << "Update med\n";
+}
+
+void Controller::search_med_name()
+{
+
+}
+
+void Controller::search_med_quantity()
+{
+
+}
+
+void Controller::group_by_price()
+{
+
+}
+
+Controller::~Controller()
+{
+
 }

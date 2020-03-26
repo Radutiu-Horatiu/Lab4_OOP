@@ -15,5 +15,14 @@ public:
 
 	//updates name, concentration, price, quantity
 	void update_med();
+
+	//search meds by name
+	void search_med_name();
+
+	//search by quantity
+	void search_med_quantity();
+
+	//print meds grouped by price
+	void group_by_price();
 };
 
