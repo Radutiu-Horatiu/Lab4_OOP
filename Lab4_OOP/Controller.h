@@ -7,6 +7,13 @@ public:
 
 	~Controller();
 
-	void functie();
+	//adds medicine
+	void add_med();
+
+	//deletes medicine
+	void delete_med();
+
+	//updates name, concentration, price, quantity
+	void update_med();
 };
 

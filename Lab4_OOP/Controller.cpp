@@ -13,7 +13,17 @@ Controller::~Controller()
 
 }
 
-void Controller::functie()
+void Controller::add_med()
 {
-	cout << "func";
+	cout << "Add med\n";
+}
+
+void Controller::delete_med()
+{
+	cout << "Delete med\n";
+}
+
+void Controller::update_med()
+{
+	cout << "Update med\n";
 }
