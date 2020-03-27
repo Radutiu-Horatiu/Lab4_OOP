@@ -14,8 +14,7 @@ Medicine::Medicine(string n, double c, double p, int q)
 }
 
 Medicine::Medicine()
-{
-}
+{};
 
 void Medicine::add_medicine(vector <Medicine>& v)
 {
@@ -29,5 +28,5 @@ void Medicine::add_medicine(vector <Medicine>& v)
 }
 
 Medicine::~Medicine()
-{
-}
+{};
+

@@ -4,7 +4,7 @@
 
 using namespace std;
 
-class Repository
+class Repository 
 {
 public:
 
@@ -14,15 +14,15 @@ public:
 
 	~Repository();
 
-	void add_medication();
+	bool add_medication(string N, double C, bool okay = true);
 
-	void delete_medication();
+	bool delete_medication(string N, double C, bool okay = true);
 
-	void update_medication();
+	bool update_medication(string N, double C, bool okay = true);
 
-	void search_medication_by_name();
+	void search_medication_by_name(string Z);
 
-	void search_medication_by_quantity();
+	void search_medication_by_quantity(int QQQQ);
 
 	void group_meds_by_price();
 };
