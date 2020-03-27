@@ -58,6 +58,7 @@ bool Repository::add_medication(string N, double C, bool okay)
 		NeuMed.set_concentration(C);
 		NeuMed.set_quantity(Quan);
 		NeuMed.set_price(Pri);
+		meds.push_back(NeuMed);
 
 		cout << "Addieren!\n";
 		cout << "Loading ... (0%)\n";
@@ -82,6 +83,7 @@ bool Repository::add_medication(string N, double C, bool okay)
 
 			if (ok == true) //Vorhandenes Produkt
 			{
+				cout << "\nuai\n";
 				saver_q = -saver_q;
 				meds[saver_i].add_to_quantity(saver_q);
 				return false;
@@ -120,8 +122,10 @@ bool Repository::delete_medication(string N, double C, bool okay)
 
 	bool ok = false; // Produkt nicht gefunden.
 
-	for (int i = 0; i != meds.size(); ++i)
+	int i = 0;
+	while (i != meds.size())
 	{
+		bool okok = false;
 		if ((meds[i].get_name() == N) && (meds[i].get_concentration() == C)) // Suchen fur Produkt
 		{
 			ok = true; // Produkt gefunden
@@ -132,10 +136,12 @@ bool Repository::delete_medication(string N, double C, bool okay)
 
 			if (i == 0)
 			{
+				okok = true;
 				meds.erase(meds.begin());
 			}
 			else
 			{
+				okok = true;
 				meds.erase(meds.begin() + i);
 			}
 
@@ -148,6 +154,11 @@ bool Repository::delete_medication(string N, double C, bool okay)
 			cout << "Fertig!\n";
 
 		}
+
+		if (okok != true)
+			i++;
+		else
+			break;
 	}
 
 	if (ok == false)
@@ -383,43 +394,59 @@ bool Repository::update_medication(string N, double C, bool okay)
 
 void Repository::search_medication_by_name(string Z)
 {
-	if ((Z == "") || (Z == " "))
+	if (Z.empty())
 	{
 		cout << "Eingegebene Zeichenkette ist leer! Diese sind alle Produkte die enthalten sind:\n";
 
 		std::sort(meds.begin(), meds.end());
 
+		cout << " -------------------------------------------\n";
+
 		for (int i = 0; i != meds.size(); ++i)
 		{
-			cout << meds[i].get_name() << endl;
+			cout << "Name: " << meds[i].get_name() << "\nKoncentration: "<< meds[i].get_concentration() << "\nPreis: " << meds[i].get_price() << "\nMenge: "<< meds[i].get_quantity() << endl;
+			cout << " -------------------------------------------\n";
 		}
+		cout << "\n";
 		cout << "Fertig!\n";
+
+		cout << " -------------------------------------------\n";
 	}
 	else
 	{
+		cout << " -------------------------------------------\n";
 		for (int i = 0; i != meds.size(); ++i)
 		{
+
 			std::size_t found = meds[i].get_name().find(Z);
 			if (found != std::string::npos)
 			{
-				cout << meds[i].get_name() << endl;
+				cout << "Name: " << meds[i].get_name() << "\nKoncentration: " << meds[i].get_concentration() << "\nPreis: " << meds[i].get_price() << "\nMenge: " << meds[i].get_quantity() << endl;
+				cout << " -------------------------------------------\n";
 			}
 		}
+		cout << "\n";
 		cout << "Fertig!\n";
+
+		cout << " -------------------------------------------\n";
 	}
 
 }
 
 void Repository::search_medication_by_quantity(int QQQQ)
 {
-
+	cout << " -------------------------------------------\n";
 	for (int i = 0; i != meds.size(); ++i)
 	{
 		if (meds[i].get_quantity() < QQQQ)
-			cout << meds[i].get_name() << endl;
+		{
+			cout << "Name: " << meds[i].get_name() << "\nKoncentration: " << meds[i].get_concentration() << "\nPreis: " << meds[i].get_price() << "\nMenge: " << meds[i].get_quantity() << endl;
+			cout << " -------------------------------------------\n";
+		}
 	}
 
 	cout << "Fertig!\n";
+	cout << " -------------------------------------------\n";
 }
 
 
@@ -435,11 +462,14 @@ void Repository::group_meds_by_price()
 				meds[j] = aux;
 			}
 	
+	cout << " -------------------------------------------\n";
 	for (int i = 0; i != meds.size(); ++i)
 	{
-		cout << meds[i].get_name() << endl;
+		cout << "Name: " << meds[i].get_name() << "\nPreis: " << meds[i].get_price() << endl;
+		cout << " -------------------------------------------\n";
 	}
 	cout << "Fertig!\n";
+	cout << " -------------------------------------------\n";
 
 }
 

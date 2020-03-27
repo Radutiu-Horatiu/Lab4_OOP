@@ -28,7 +28,21 @@ void Controller::add_med()
 	bool OK = Repository::add_medication(N, C);
 
 	while (OK == false)
+	{
+		cout << "Geben sie bitte der Name des Produkts sie einfugen wollen:\n";
+
+		string N;
+
+		cin >> N;
+
+		double C;
+
+		cout << "Geben sie bitte der Koncentration des Produkts sie einfugen wollen:\n";
+
+		cin >> C;
+
 		OK = Repository::add_medication(N, C);
+	}
 	
 }
 
@@ -51,7 +65,21 @@ void Controller::delete_med()
 	bool OK = Repository::delete_medication(N, C);
 
 	while (OK == false)
+	{
+		cout << "Geben sie bitte der Name des Produkts die sie loschen wollen:\n";
+
+		string N;
+
+		cin >> N;
+
+		double C;
+
+		cout << "Geben sie bitte der Koncentration des Produkts sie loschen wollen:\n";
+
+		cin >> C;
+
 		OK = Repository::delete_medication(N, C);
+	}
 }
 
 void Controller::update_med()
@@ -73,7 +101,22 @@ void Controller::update_med()
 
 	bool OK = Repository::update_medication(N, C);
 	while (OK == false)
+	{
+		cout << "Geben sie bitte der Name des Produkts die sie verarbeiten wollen:\n";
+
+		string N;
+
+		cin >> N;
+
+		double C;
+
+		cout << "Geben sie bitte der Koncentration des Produkts sie verarbeiten wollen:\n";
+
+		cin >> C;
+
 		OK = Repository::update_medication(N, C);
+	}
+
 }
 
 void Controller::search_med_name()

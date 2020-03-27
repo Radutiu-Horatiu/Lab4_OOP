@@ -20,7 +20,7 @@ void Console::main()
 	bool undo = false;
 	bool redo = false;
 
-	cout << "Choose option:\n1 - add medication\n2 - delete medication\n3 - update medication\n4 - search meds by name\n5 - search meds by quantity\n6 - group by price\n\nYour option: ";
+	cout << "Choose option:\n0 - Exit\n1 - add medication\n2 - delete medication\n3 - update medication\n4 - search meds by name\n5 - search meds by quantity\n6 - group by price\n\nYour option: ";
 
 	while (opt != 0)
 	{
@@ -49,6 +49,9 @@ void Console::main()
 
 		else
 			cout << "\nInvalid option!";
+
+		cout << "Choose option:\n0 - Exit\n1 - add medication\n2 - delete medication\n3 - update medication\n4 - search meds by name\n5 - search meds by quantity\n6 - group by price\n\nYour option: ";
+
 	}
 
 }
