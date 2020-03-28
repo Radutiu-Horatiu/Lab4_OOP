@@ -13,9 +13,6 @@ Medicine::Medicine(string n, double c, double p, int q)
 	quantity = q;
 }
 
-Medicine::Medicine()
-{};
-
 void Medicine::add_medicine(vector <Medicine>& v)
 {
 	Medicine m;

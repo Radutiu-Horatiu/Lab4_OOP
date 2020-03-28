@@ -11,6 +11,4 @@ int main()
 	Console cons;
 	cons.main();
 
-	//Medicine m("aspa", 1, 1, 1);
-	//m.add_medicine(repo.meds);
 }

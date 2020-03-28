@@ -44,7 +44,6 @@ public:
 		return (this->name < obj.name);
 	}
 	
-
 	~Medicine();
 
 };
