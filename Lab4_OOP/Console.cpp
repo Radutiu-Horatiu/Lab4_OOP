@@ -17,14 +17,17 @@ void Console::main()
 
 	int opt = 69;
 
-	bool undo = false;
-	bool redo = false;
-
 	cout << "Choose option:\n0 - Exit\n1 - add medication\n2 - delete medication\n3 - update medication\n4 - search meds by name\n5 - search meds by quantity\n6 - group by price\n\nYour option: ";
 
 	while (opt != 0)
 	{
 		cin >> opt;
+		while (std::cin.fail()) {
+			std::cout << "Error" << std::endl;
+			std::cin.clear();
+			std::cin.ignore(256, '\n');
+			std::cin >> opt;
+		}
 
 		if (opt == 1)
 			Controller::add_med();
