@@ -93,9 +93,11 @@ void Controller::update_med()
 	cout << "New Price(double): ";
 	cin >> price;
 
+	Medicine old = get_element(name, concentration);
+
 	Medicine m = update_medication(name, concentration, price);
 
-	if (m.get_price() != price)
+	if (m.get_price() == price)
 		cout << "Updated succesfully!\n";
 	else
 		cout << "Could not update.\n";
@@ -104,9 +106,9 @@ void Controller::update_med()
 	cout << "\nRedo = 0/Undo = 1 ?\nOption: ";
 	cin >> opt;
 
-	if (opt == 1 and m.get_price() != price)
+	if (opt == 1 and m.get_price() == price)
 	{
-		Medicine q = update_medication(name, concentration, m.get_price());
+		Medicine q = update_medication(name, concentration, old.get_price());
 		cout << "Updated back!\n";
 	}
 	else if (opt == 0)

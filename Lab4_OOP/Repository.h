@@ -20,8 +20,10 @@ public:
 	//returneaza medicamentul sters
 	Medicine delete_medication(string name, double concentration);
 
-	//returneaza medicamentul dinaintea modificarii
+	//returneaza medicamentul modificat
 	Medicine update_medication(string name, double concentration, double price);
+
+	Medicine get_element(string name, double concentration);
 
 	void search_medication_by_name(string Z);
 

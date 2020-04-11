@@ -58,16 +58,26 @@ Medicine Repository::delete_medication(string name, double concentration)
 	return sters;
 }
 
+Medicine Repository::get_element(string name, double concentration)
+{
+	Medicine m;
+	for (int i = 0; i < meds.size(); i++)
+		if (meds[i].get_name() == name and meds[i].get_concentration() == concentration)
+			return meds[i];
+
+	return m;
+}
+
 Medicine Repository::update_medication(string name, double concentration, double price)
 {
-	Medicine old;
+	Medicine modificat;
 	vector <Medicine> temp;
 
 	for (int i = 0; i < meds.size(); i++)
 		if (meds[i].get_name() == name and meds[i].get_concentration() == concentration)
 		{
-			old = meds[i];
 			meds[i].set_price(price);
+			modificat = meds[i];
 			temp.push_back(meds[i]);
 		}
 		else
@@ -76,7 +86,7 @@ Medicine Repository::update_medication(string name, double concentration, double
 	meds.clear();
 	meds = temp;
 
-	return old;
+	return modificat;
 
 }
 
