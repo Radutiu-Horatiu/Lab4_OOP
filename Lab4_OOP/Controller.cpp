@@ -4,404 +4,113 @@
 
 using namespace std;
 
-Controller::Controller() : Repository() 
-{
-
-}
+Controller::Controller() : Repository() {}
 
 void Controller::add_med()
 {
-	cout << "Add med\n";
+	cout << "Add med\n\n";
 
-	cout << "Geben sie bitte der Name des Produkts sie einfugen wollen:\n";
+	string name;
+	double concentration;
+	double price;
+	int quantity;
 
-	string N;
+	cout << "Name(string): ";
+	cin >> name;
 
-	cin >> N;
-	while (std::cin.fail()) {
-		std::cout << "Error" << std::endl;
-		std::cin.clear();
-		std::cin.ignore(256, '\n');
-		std::cin >> N;
-	}
+	cout << "Concentration(double): ";
+	cin >> concentration;
 
-	double C;
+	cout << "Price(double): ";
+	cin >> price;
 
-	cout << "Geben sie bitte der Koncentration des Produkts sie einfugen wollen:\n";
+	cout << "Quantity(int): ";
+	cin >> quantity;
 
-	cin >> C;
-	while (std::cin.fail()) {
-		std::cout << "Error" << std::endl;
-		std::cin.clear();
-		std::cin.ignore(256, '\n');
-		std::cin >> C;
-	}
+	Medicine q = add_medication(name, concentration, price, quantity);
+	cout << "Medication added succesfully!\n";
 
-	cout << "Geben sie bitte die gewunschte Menge die sie eingeben wollen:\n";
+	int opt;
+	cout << "\nRedo = 0/Undo = 1 ?\nOption: ";
+	cin >> opt;
 
-	int QQQ;
-	cin >> QQQ;
-	while (std::cin.fail()) {
-		std::cout << "Error" << std::endl;
-		std::cin.clear();
-		std::cin.ignore(256, '\n');
-		std::cin >> QQQ;
-	}
-
-	cout << "Geben sie bitte die gewunschte Preis fur die Meds:\n";
-	double Pri;
-	cin >> Pri;
-	while (std::cin.fail()) {
-		std::cout << "Error" << std::endl;
-		std::cin.clear();
-		std::cin.ignore(256, '\n');
-		std::cin >> Pri;
-	}
-
-	bool OK = Repository::add_medication(N, C, QQQ, Pri);
-
-	while (OK == false)
+	if (opt == 0)
+		add_med();
+	else if (opt == 1)
 	{
-		cout << "Geben sie bitte der Name des Produkts sie einfugen wollen:\n";
-
-		string N;
-
-		cin >> N;
-		while (std::cin.fail()) {
-			std::cout << "Error" << std::endl;
-			std::cin.clear();
-			std::cin.ignore(256, '\n');
-			std::cin >> N;
-		}
-
-		double C;
-
-		cout << "Geben sie bitte der Koncentration des Produkts sie einfugen wollen:\n";
-
-		cin >> C;
-		while (std::cin.fail()) {
-			std::cout << "Error" << std::endl;
-			std::cin.clear();
-			std::cin.ignore(256, '\n');
-			std::cin >> C;
-		}
-
-		cout << "Geben sie bitte die gewunschte Menge die sie eingeben wollen:\n";
-
-		int QQQ;
-		cin >> QQQ;
-		while (std::cin.fail()) {
-			std::cout << "Error" << std::endl;
-			std::cin.clear();
-			std::cin.ignore(256, '\n');
-			std::cin >> QQQ;
-		}
-
-		cout << "Geben sie bitte die gewunschte Preis fur die Meds:\n";
-		double Pri;
-		cin >> Pri;
-		while (std::cin.fail()) {
-			std::cout << "Error" << std::endl;
-			std::cin.clear();
-			std::cin.ignore(256, '\n');
-			std::cin >> Pri;
-		}
-
-		OK = Repository::add_medication(N, C, QQQ, Pri);
+		Medicine m = delete_medication(name, concentration);
+		cout << "Previous deleted!\n";
 	}
-	
 }
 
 void Controller::delete_med()
 {
-	cout << "Delete med\n";
+	cout << "Delete med\n\n";
 
-	cout << "Geben sie bitte der Name des Produkts die sie loschen wollen:\n";
+	string name;
+	double concentration;
 
-	string N;
+	cout << "Name(string): ";
+	cin >> name;
 
-	cin >> N;
-	while (std::cin.fail()) {
-		std::cout << "Error" << std::endl;
-		std::cin.clear();
-		std::cin.ignore(256, '\n');
-		std::cin >> N;
-	}
+	cout << "Concentration(double): ";
+	cin >> concentration;
 
-	double C;
+	Medicine m = delete_medication(name, concentration);
 
-	cout << "Geben sie bitte der Koncentration des Produkts sie loschen wollen:\n";
+	if (m.get_name() == "?")
+		cout << "Medicine does not exist!\n";
+	else
+		cout << "Medication deleted succesfully!\n";
 
-	cin >> C;
-	while (std::cin.fail()) {
-		std::cout << "Error" << std::endl;
-		std::cin.clear();
-		std::cin.ignore(256, '\n');
-		std::cin >> C;
-	}
+	int opt;
+	cout << "\nRedo = 0/Undo = 1 ?\nOption: ";
+	cin >> opt;
 
-	bool OK = Repository::delete_medication(N, C);
-
-	while (OK == false)
+	if (opt == 1 and m.get_name() != "?")
 	{
-		cout << "Geben sie bitte der Name des Produkts die sie loschen wollen:\n";
-
-		string N;
-
-		cin >> N;
-		while (std::cin.fail()) {
-			std::cout << "Error" << std::endl;
-			std::cin.clear();
-			std::cin.ignore(256, '\n');
-			std::cin >> N;
-		}
-
-		double C;
-
-		cout << "Geben sie bitte der Koncentration des Produkts sie loschen wollen:\n";
-
-		cin >> C;
-		while (std::cin.fail()) {
-			std::cout << "Error" << std::endl;
-			std::cin.clear();
-			std::cin.ignore(256, '\n');
-			std::cin >> C;
-		}
-
-		OK = Repository::delete_medication(N, C);
+		Medicine q = add_medication(m.get_name(), m.get_concentration(), m.get_price(), m.get_quantity());
+		cout << "Added back!\n";
 	}
+	else if (opt == 0)
+		delete_med();
 }
 
 void Controller::update_med()
 {
-	cout << "Update med\n";
+	cout << "Update med\n\n";
 
-	cout << "Geben sie bitte der Name des Produkts die sie verarbeiten wollen:\n";
+	string name;
+	double concentration;
+	double price;
 
-	string N;
+	cout << "Name(string): ";
+	cin >> name;
 
-	cin >> N;
-	while (std::cin.fail()) {
-		std::cout << "Error" << std::endl;
-		std::cin.clear();
-		std::cin.ignore(256, '\n');
-		std::cin >> N;
-	}
+	cout << "Concentration(double): ";
+	cin >> concentration;
 
-	double C;
+	cout << "New Price(double): ";
+	cin >> price;
 
-	cout << "Geben sie bitte der Koncentration des Produkts sie verarbeiten wollen:\n";
+	Medicine m = update_medication(name, concentration, price);
 
-	cin >> C;
-	while (std::cin.fail()) {
-		std::cout << "Error" << std::endl;
-		std::cin.clear();
-		std::cin.ignore(256, '\n');
-		std::cin >> C;
-	}
-
-	cout << "Was wollen sie verarbeiten?\n";
-
-	cout << "\n1 - Preis verandern\n2 - Menge verandern\n0 - Nichts";
-
-	int opt = 69;
-	int update_price = -1;
-	int update_quantity = -1;
-
-
-	while (opt != 0) {
-
-		cin >> opt;
-		while (std::cin.fail()) {
-			std::cout << "Error" << std::endl;
-			std::cin.clear();
-			std::cin.ignore(256, '\n');
-			std::cin >> opt;
-		}
-
-		if (opt == 1)
-		{
-			
-			cout << "Geben sie bitte die gewunschte Preis fur die Meds:\n";
-			double Pri;
-			cin >> Pri;
-			while (std::cin.fail()) {
-				std::cout << "Error" << std::endl;
-				std::cin.clear();
-				std::cin.ignore(256, '\n');
-				std::cin >> Pri;
-			}
-			update_price = Pri;
-		}
-
-		if (opt == 2)
-		{
-			
-			cout << "Geben sie bitte die gewunschte Menge die sie eingeben wollen:\n";
-
-			int QQQ;
-			cin >> QQQ;
-			while (std::cin.fail()) {
-				std::cout << "Error" << std::endl;
-				std::cin.clear();
-				std::cin.ignore(256, '\n');
-				std::cin >> QQQ;
-			}
-			update_quantity = QQQ;
-		}
-
-		cout << "Was wollen sie verarbeiten?\n";
-
-		cout << "\n1 - Preis verandern\n2 - Menge verandern\n0 - Nichts";
-
-	}
-
-	bool OK = true;
-
-	if (update_price == -1 && update_quantity == -1) {
-		return;
-	}
+	if (m.get_price() != price)
+		cout << "Updated succesfully!\n";
 	else
+		cout << "Could not update.\n";
+
+	int opt;
+	cout << "\nRedo = 0/Undo = 1 ?\nOption: ";
+	cin >> opt;
+
+	if (opt == 1 and m.get_price() != price)
 	{
-		OK = Repository::update_medication(N, C, update_quantity, update_price);
+		Medicine q = update_medication(name, concentration, m.get_price());
+		cout << "Updated back!\n";
 	}
-
-	while (OK == false) {
-
-		cout << "Was wollen sie verarbeiten?\n";
-
-		cout << "\n1 - Preis verandern\n2 - Menge verandern\n0 - Nichts";
-
-		int opt = 69;
-		int update_price = -1;
-		int update_quantity = -1;
-
-
-		while (opt != 0) {
-
-			cin >> opt;
-			while (std::cin.fail()) {
-				std::cout << "Error" << std::endl;
-				std::cin.clear();
-				std::cin.ignore(256, '\n');
-				std::cin >> opt;
-			}
-
-			if (opt == 1)
-			{
-
-				cout << "Geben sie bitte die gewunschte Preis fur die Meds:\n";
-				double Pri;
-				cin >> Pri;
-				while (std::cin.fail()) {
-					std::cout << "Error" << std::endl;
-					std::cin.clear();
-					std::cin.ignore(256, '\n');
-					std::cin >> Pri;
-				}
-				update_price = Pri;
-			}
-
-			if (opt == 2)
-			{
-
-				cout << "Geben sie bitte die gewunschte Menge die sie eingeben wollen:\n";
-
-				int QQQ;
-				cin >> QQQ;
-				while (std::cin.fail()) {
-					std::cout << "Error" << std::endl;
-					std::cin.clear();
-					std::cin.ignore(256, '\n');
-					std::cin >> QQQ;
-				}
-				update_quantity = QQQ;
-			}
-
-			cout << "Was wollen sie verarbeiten?\n";
-
-			cout << "\n1 - Preis verandern\n2 - Menge verandern\n0 - Nichts";
-
-		}
-
-		OK = Repository::update_medication(N, C, update_quantity, update_price);
-	}
-
-
-	/*
-	while (OK == false)
-	{
-		cout << "Geben sie bitte der Name des Produkts die sie suchen wollen:\n";
-
-		string N;
-
-		cin >> N;
-		while (std::cin.fail()) {
-			std::cout << "Error" << std::endl;
-			std::cin.clear();
-			std::cin.ignore(256, '\n');
-			std::cin >> N;
-		}
-
-		double C;
-
-		cout << "Geben sie bitte der Koncentration des Produkts sie suchen wollen:\n";
-
-		cin >> C;
-		while (std::cin.fail()) {
-			std::cout << "Error" << std::endl;
-			std::cin.clear();
-			std::cin.ignore(256, '\n');
-			std::cin >> C;
-		}
-
-		cout << "Was wollen sie verarbeiten?\n";
-
-		cout << "\n1 - Name verandern\n2 - Koncentration verandern\n3 - Preis verandern\n4 - Menge verandern\n";
-
-		int opt = 69;
-
-		vector <bool> updates = { false, false, false, false };
-
-		while (opt != 0) {
-
-			cin >> opt;
-			while (std::cin.fail()) {
-				std::cout << "Error" << std::endl;
-				std::cin.clear();
-				std::cin.ignore(256, '\n');
-				std::cin >> opt;
-			}
-
-			if (opt == 1) 
-			{
-				updates[0] = true;
-			}
-
-			if (opt == 2) 
-			{
-				updates[1] = true;
-			}
-
-			if (opt == 3) 
-			{
-				updates[2] = true;
-			}
-
-			if (opt == 4) 
-			{
-				updates[3] = true;
-			}
-
-			else if (opt == 0) 
-			{
-			
-			}
-		}
-
-		OK = Repository::update_medication(N, C);
-	}
-	*/
+	else if (opt == 0)
+		update_med();
 }
 
 void Controller::search_med_name()

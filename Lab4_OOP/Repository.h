@@ -4,7 +4,7 @@
 
 using namespace std;
 
-class Repository 
+class Repository
 {
 public:
 
@@ -14,11 +14,14 @@ public:
 
 	~Repository();
 
-	bool add_medication(string N, double C, int QQQ, double Pri,  bool okay = true);
+	//returneaza medicamentul adauagt
+	Medicine add_medication(string name, double concentration, double price, int quantity);
 
-	bool delete_medication(string N, double C, bool okay = true);
+	//returneaza medicamentul sters
+	Medicine delete_medication(string name, double concentration);
 
-	bool update_medication(string N, double C, int Q, double P, bool okay = true);
+	//returneaza medicamentul dinaintea modificarii
+	Medicine update_medication(string name, double concentration, double price);
 
 	void search_medication_by_name(string Z);
 

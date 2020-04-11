@@ -78,56 +78,56 @@ void write_file(vector <Medicine> v)
 
 void read_file(vector <Medicine>& v)
 {
-    ifstream myReadFile;
-    string word;
-    string filename = "meds.txt";
-    myReadFile.open(filename.c_str());
+	ifstream myReadFile;
+	string word;
+	string filename = "meds.txt";
+	myReadFile.open(filename.c_str());
 
-    string name;
-    double con;
-    double price;
-    int quant;
+	string name;
+	double con;
+	double price;
+	int quant;
 
-    string temp;
+	string temp;
 
-    string::size_type sz;
+	string::size_type sz;
 
-    while (!myReadFile.eof())
-    {
-        Medicine m;
+	while (!myReadFile.eof())
+	{
+		Medicine m;
 
-        myReadFile >> name;
-        if (name != "")
-            m.set_name(name);
+		myReadFile >> name;
+		if (name != "")
+			m.set_name(name);
 
-        myReadFile >> temp;
-        if (temp != "")
-        {
-            con = stod(temp, &sz);
-            m.set_concentration(con);
-        }
+		myReadFile >> temp;
+		if (temp != "")
+		{
+			con = stod(temp, &sz);
+			m.set_concentration(con);
+		}
 
-        myReadFile >> temp;
-        if (temp != "")
-        {
-            price = stod(temp, &sz);
-            m.set_price(price);
-        }
+		myReadFile >> temp;
+		if (temp != "")
+		{
+			price = stod(temp, &sz);
+			m.set_price(price);
+		}
 
-        myReadFile >> temp;
-        if (temp != "")
-        {
-            quant = stoi(temp, &sz);
-            m.set_quantity(quant);
-        }
+		myReadFile >> temp;
+		if (temp != "")
+		{
+			quant = stoi(temp, &sz);
+			m.set_quantity(quant);
+		}
 
-        if (name != "")
-            v.push_back(m);
+		if (name != "")
+			v.push_back(m);
 
-    }
+	}
 
-    if (v.size() > 0)
-        v.erase(v.end() - 1);
-    myReadFile.close();
+	if (v.size() > 0)
+		v.erase(v.end() - 1);
+	myReadFile.close();
 
 }
