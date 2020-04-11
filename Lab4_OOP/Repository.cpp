@@ -90,7 +90,7 @@ Medicine Repository::update_medication(string name, double concentration, double
 
 }
 
-void Repository::search_medication_by_name(string Z)
+bool Repository::search_medication_by_name(string Z)
 {
 	if (meds.empty() == false)
 	{
@@ -111,6 +111,7 @@ void Repository::search_medication_by_name(string Z)
 			cout << "Fertig!\n";
 
 			cout << " -------------------------------------------\n";
+			return true;
 		}
 		else
 		{
@@ -129,13 +130,18 @@ void Repository::search_medication_by_name(string Z)
 			cout << "Fertig!\n";
 
 			cout << " -------------------------------------------\n";
+			return true;
 		}
 	}
-	else
+	else {
 		cout << "Container ist leer!\n";
+		return false;
+	}
+		
+
 }
 
-void Repository::search_medication_by_quantity(int QQQQ)
+bool Repository::search_medication_by_quantity(int QQQQ)
 {
 	if (meds.empty() == false)
 	{
@@ -153,12 +159,16 @@ void Repository::search_medication_by_quantity(int QQQQ)
 
 		cout << "Fertig!\n";
 		cout << " -------------------------------------------\n";
+		return true;
 	}
-	else
+	else {
 		cout << "Container ist leer!\n";
+		return false;
+	}
+		
 }
 
-void Repository::group_meds_by_price()
+bool Repository::group_meds_by_price()
 {
 
 	if (meds.empty() == false)
@@ -180,7 +190,11 @@ void Repository::group_meds_by_price()
 		}
 		cout << "Fertig!\n";
 		cout << " -------------------------------------------\n";
+		return true;
 	}
-	else
+	else {
 		cout << "Container ist leer!\n";
+		return false;
+	}
+		
 }

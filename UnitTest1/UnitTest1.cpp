@@ -68,5 +68,53 @@ namespace UnitTest1
 
 		}
 
+		TEST_METHOD(SearchByName)
+		{
+			auto repo = new Repository;
+
+			bool OK = repo->search_medication_by_name("aspirina");
+
+			Assert::IsFalse(OK);
+
+			Medicine m1 = repo->add_medication("aspirina", 49, 99, 10);
+
+			OK = repo->search_medication_by_name("aspirina");
+
+			Assert::IsTrue(OK);
+
+		}
+
+		TEST_METHOD(SearchByQuantity)
+		{
+			auto repo = new Repository;
+
+			bool OK = repo->search_medication_by_quantity(10);
+
+			Assert::IsFalse(OK);
+
+			Medicine m1 = repo->add_medication("nurofen", 49, 99, 10);
+
+			OK = repo->search_medication_by_quantity(10);
+
+			Assert::IsTrue(OK);
+
+		}
+
+		TEST_METHOD(GroupByPrice)
+		{
+			auto repo = new Repository;
+
+			bool OK = repo->group_meds_by_price();
+
+			Assert::IsFalse(OK);
+
+			Medicine m1 = repo->add_medication("paracetamol", 49, 99, 10);
+
+			OK = repo->group_meds_by_price();
+
+			Assert::IsTrue(OK);
+
+		}
+
 	};
 }

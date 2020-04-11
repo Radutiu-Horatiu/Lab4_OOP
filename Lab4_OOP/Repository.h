@@ -25,10 +25,10 @@ public:
 
 	Medicine get_element(string name, double concentration);
 
-	void search_medication_by_name(string Z);
+	bool search_medication_by_name(string Z);
 
-	void search_medication_by_quantity(int QQQQ);
+	bool search_medication_by_quantity(int QQQQ);
 
-	void group_meds_by_price();
+	bool group_meds_by_price();
 };
 
