@@ -15,7 +15,7 @@ Repository::~Repository()
 
 }
 
-bool Repository::add_medication(string N, double C, bool okay)
+bool Repository::add_medication(string N, double C, int QQQ, double Pri, bool okay)
 {
 	bool ok = false; //kein vorhandenes Produkt
 	int saver_i = 0;
@@ -27,9 +27,10 @@ bool Repository::add_medication(string N, double C, bool okay)
 		{
 			ok = true; // vorhandenes Produkt
 
-			cout << "Sie wollen ein schon vorhandenes Produkt hinzufügen...\n";
-			cout << "Geben sie bitte die gewunschte Menge die sie zu den akutelle Menge addieren wollen:\n";
+			//cout << "Sie wollen ein schon vorhandenes Produkt hinzufügen...\n";
+			//cout << "Geben sie bitte die gewunschte Menge die sie zu den akutelle Menge addieren wollen:\n";
 
+			/*
 			int QQQ;
 			cin >> QQQ;
 			while (std::cin.fail()) {
@@ -38,8 +39,12 @@ bool Repository::add_medication(string N, double C, bool okay)
 				std::cin.ignore(256, '\n');
 				std::cin >> QQQ;
 			}
+
+			*/
+
 			saver_q = QQQ;
 			saver_i = i;
+			
 
 			meds[i].add_to_quantity(QQQ);
 			cout << "Fertig!\n";
@@ -49,9 +54,10 @@ bool Repository::add_medication(string N, double C, bool okay)
 
 	if (ok == false) // Kein vorhandenes Produkt eingegeben
 	{
-		cout << "Neues Produkt ist zu addieren...\n";
-		cout << "Geben sie bitte die gewunschte Menge die sie eingeben wollen:\n";
+		//cout << "Neues Produkt ist zu addieren...\n";
+		//cout << "Geben sie bitte die gewunschte Menge die sie eingeben wollen:\n";
 
+		/*
 		int Quan;
 		cin >> Quan;
 		while (std::cin.fail()) {
@@ -60,7 +66,9 @@ bool Repository::add_medication(string N, double C, bool okay)
 			std::cin.ignore(256, '\n');
 			std::cin >> Quan;
 		}
+		*/
 
+		/*
 		cout << "Geben sie bitte die gewunschte Preis fur die Meds:\n";
 		double Pri;
 		cin >> Pri;
@@ -70,11 +78,12 @@ bool Repository::add_medication(string N, double C, bool okay)
 			std::cin.ignore(256, '\n');
 			std::cin >> Pri;
 		}
+		*/
 
 		Medicine NeuMed;
 		NeuMed.set_name(N);
 		NeuMed.set_concentration(C);
-		NeuMed.set_quantity(Quan);
+		NeuMed.set_quantity(QQQ);
 		NeuMed.set_price(Pri);
 		meds.push_back(NeuMed);
 
@@ -107,7 +116,6 @@ bool Repository::add_medication(string N, double C, bool okay)
 
 			if (ok == true) //Vorhandenes Produkt
 			{
-				cout << "\nuai\n";
 				saver_q = -saver_q;
 				meds[saver_i].add_to_quantity(saver_q);
 				return false;
@@ -146,6 +154,9 @@ bool Repository::delete_medication(string N, double C, bool okay)
 {
 	if (meds.empty() == false)
 	{
+		double saver_quantity = 0.0;
+		double saver_price = 0.0;
+
 		bool ok = false; // Produkt nicht gefunden.
 
 		int i = 0;
@@ -162,11 +173,15 @@ bool Repository::delete_medication(string N, double C, bool okay)
 
 				if (i == 0)
 				{
+					saver_quantity = meds[i].get_concentration();
+					saver_price = meds[i].get_price();
 					okok = true;
 					meds.erase(meds.begin());
 				}
 				else
 				{
+					saver_quantity = meds[i].get_concentration();
+					saver_price = meds[i].get_price();
 					okok = true;
 					meds.erase(meds.begin() + i);
 				}
@@ -211,14 +226,14 @@ bool Repository::delete_medication(string N, double C, bool okay)
 			{
 				cout << "Sie haben Redo gewahlt. Sie werden jetzt ihr letztes Wunsch nocheinmal machen.\n";
 
-				add_medication(N, C, false);
+				add_medication(N, C, saver_quantity, saver_price, false);
 				return false;
 
 			}
 			else if (nr == 2)//Undo
 			{
 				cout << "Sie haben Undo gewahlt. Ihr letztes Wahl wurde geloscht.\n";
-				add_medication(N, C, false);
+				add_medication(N, C, saver_quantity, saver_price, false);
 				return true;
 			}
 
@@ -233,8 +248,9 @@ bool Repository::delete_medication(string N, double C, bool okay)
 
 }
 
-bool Repository::update_medication(string N, double C, bool okay)
-{
+bool Repository::update_medication(string N, double C, int Q, double P, bool okay)
+{	
+	/*
 	if (meds.empty() == false)
 	{
 		bool ok = false; //Produkt nicht gefunden
@@ -262,6 +278,8 @@ bool Repository::update_medication(string N, double C, bool okay)
 			{
 				ok = true; // vorhandenes Produkt
 
+				return true;
+				
 				cout << "Was wollen sie verarbeiten?\n";
 
 				cout << "\n1 - Name verandern\n2 - Koncentration verandern\n3 - Preis verandern\n4 - Menge verandern\n";
@@ -364,35 +382,35 @@ bool Repository::update_medication(string N, double C, bool okay)
 
 					cout << "\n1 - Name verandern\n2 - Koncentration verandern\n3 - Preis verandern\n4 - Menge verandern\n";
 				}
-
+				
 			}
 		}
 
 		if (ok == false) //Kein vorhandenes Produkt gegeben
 		{
-			/*
-			cout << "Sie haben ein nicht vorhandenes Produkt gegeben.\n";
-			cout << "Wollen sie die eingegebene Produkt hineinfugen ?\n";
-			cout << "\n1 - Ja!\n2 - Nein!\n";
+			
+			//cout << "Sie haben ein nicht vorhandenes Produkt gegeben.\n";
+			//cout << "Wollen sie die eingegebene Produkt hineinfugen ?\n";
+			//cout << "\n1 - Ja!\n2 - Nein!\n";
 
-			int opt = 69;
+			//int opt = 69;
 
-			cin >> opt;
+			//cin >> opt;
 
-			while (opt != 2)
-			{
-				if (opt == 1)
-					add_medication(N, C, false);
-				else if (opt == 2)
-					cout << "Okay! Tschus!\n";
-				else
-					cout << "Unmogliche Wahl!\n Bitte 1 oder 2 wahlen...\n";
-			}
-			*/
+			//while (opt != 2)
+			//{
+				//if (opt == 1)
+					//add_medication(N, C, false);
+				//else if (opt == 2)
+					//cout << "Okay! Tschus!\n";
+				//else
+					//cout << "Unmogliche Wahl!\n Bitte 1 oder 2 wahlen...\n";
+			//}
+			
 
-			cout << "Kein Update moglich. Eingegebene Information nicht gefunden!\n";
-			return true;
-		}
+			//cout << "Kein Update moglich. Eingegebene Information nicht gefunden!\n";
+			//return true;
+		//}
 
 
 		if (okay == true) //Not reusing the function for redo or undo
@@ -471,8 +489,96 @@ bool Repository::update_medication(string N, double C, bool okay)
 
 		return true;
 	}
-	else
-	cout << "Container ist leer!\n";
+	else{
+		cout << "Container ist leer!\n";
+		return true;
+	}
+	*/
+	
+	if (meds.empty() == false) 
+	{
+		bool ok = false; //Produkt nicht gefunden
+		int saver_quantity = 0;
+		double saver_price = 0.0;
+		int saver_index = 0;
+
+		for (int i = 0; i != meds.size(); ++i)
+		{
+			if ((meds[i].get_name() == N) && (meds[i].get_concentration() == C)) // Prufen ob es ein vorhandenes Produkt eingegeben wurde oder nicht
+			{
+
+				ok = true; //produkt gefunden
+				saver_index = i;
+
+				if (Q != -1) {
+					saver_quantity = meds[i].get_quantity();
+					meds[i].set_quantity(Q);
+				}
+				
+				if (P != -1) {
+					saver_price = meds[i].get_price();
+					meds[i].set_price(P);
+				}
+
+				//return true;
+			}
+		}
+
+		if (ok == false) {
+			cout << "Kein Update moglich. Eingegebene Information nicht gefunden!\n";
+			return true;
+		}
+
+		if (okay == true) {
+			cout << "\nRedo or Undo?\n1 - Redo\n2 - Undo\n3(oder irgend eine Zahl) - Nichts\n";
+
+			int nr = 69;
+
+			cin >> nr;
+			while (std::cin.fail()) {
+				std::cout << "Error" << std::endl;
+				std::cin.clear();
+				std::cin.ignore(256, '\n');
+				std::cin >> nr;
+			}
+
+			if (nr == 1)
+			{
+				if (Q != -1) {
+					meds[saver_index].set_quantity(saver_quantity);
+				}
+
+				if (P != -1) {
+					meds[saver_index].set_price(saver_price);
+				}
+
+				return false;
+			}
+			else if (nr == 2)
+			{
+				if (Q != -1) {
+					meds[saver_index].set_quantity(saver_quantity);
+				}
+
+				if (P != -1) {
+					meds[saver_index].set_price(saver_price);
+				}
+
+				return true;
+			}
+
+
+			return true;
+		}
+
+
+	}
+
+	else {
+		cout << "Container ist leer!\n";
+		return true;
+	}
+
 	
 }
 

@@ -19,7 +19,7 @@ public:
 	Medicine(string n, double c, double p, int q);
 
 	//adds medicine to container
-	void add_medicine(vector <Medicine>& v);
+	//void add_medicine(vector <Medicine>& v);
 
 	string get_name() { return name; }
 

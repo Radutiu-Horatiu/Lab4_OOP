@@ -14,11 +14,11 @@ public:
 
 	~Repository();
 
-	bool add_medication(string N, double C, bool okay = true);
+	bool add_medication(string N, double C, int QQQ, double Pri,  bool okay = true);
 
 	bool delete_medication(string N, double C, bool okay = true);
 
-	bool update_medication(string N, double C, bool okay = true);
+	bool update_medication(string N, double C, int Q, double P, bool okay = true);
 
 	void search_medication_by_name(string Z);
 
