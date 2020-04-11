@@ -30,5 +30,4 @@ void Medicine::add_medicine(vector <Medicine>& v)
 Medicine::~Medicine()
 {};
 
-Medicine::Medicine() {};
 
