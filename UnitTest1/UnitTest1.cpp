@@ -70,50 +70,74 @@ namespace UnitTest1
 
 		TEST_METHOD(SearchByName)
 		{
+	
 			auto repo = new Repository;
 
-			bool OK = repo->search_medication_by_name("aspirina");
+			vector<Medicine> ReturnedMedicationsVector = repo->search_medication_by_name("aspirina");
 
-			Assert::IsFalse(OK);
+			Assert::IsTrue(ReturnedMedicationsVector.empty());
 
-			Medicine m1 = repo->add_medication("aspirina", 49, 99, 10);
 
-			OK = repo->search_medication_by_name("aspirina");
+			Medicine m1 = repo->add_medication("aspirina", 100, 19.99, 10);
 
-			Assert::IsTrue(OK);
+			Medicine m2 = repo->add_medication("aspirina", 200, 21.99, 11);
+
+			ReturnedMedicationsVector = repo->search_medication_by_name("aspirina");
+
+			Assert::IsFalse(ReturnedMedicationsVector.empty());
+
+			for (int i = 0; i < ReturnedMedicationsVector.size(); i++)
+				Assert::AreEqual(string("aspirina"), ReturnedMedicationsVector[i].get_name());
 
 		}
 
 		TEST_METHOD(SearchByQuantity)
 		{
-			auto repo = new Repository;
+			auto repo1 = new Repository;
 
-			bool OK = repo->search_medication_by_quantity(10);
+			vector<Medicine> ReturnedMedicationsVector = repo1->search_medication_by_quantity(10);
 
-			Assert::IsFalse(OK);
+			Assert::IsTrue(ReturnedMedicationsVector.empty());
 
-			Medicine m1 = repo->add_medication("nurofen", 49, 99, 10);
+			Medicine m1 = repo1->add_medication("aspirina", 100, 99.99, 9);
 
-			OK = repo->search_medication_by_quantity(10);
+			Medicine m2 = repo1->add_medication("ibuprofen", 200, 89.99, 9);
 
-			Assert::IsTrue(OK);
+			Medicine m3 = repo1->add_medication("nurofen", 300, 45.99, 11);
 
+			ReturnedMedicationsVector = repo1->search_medication_by_quantity(10);
+
+			Assert::IsFalse(ReturnedMedicationsVector.empty());
+
+			for (int i = 0; i < ReturnedMedicationsVector.size(); i++)
+				Assert::IsTrue(ReturnedMedicationsVector[i].get_quantity() < 10);
+			
 		}
 
 		TEST_METHOD(GroupByPrice)
 		{
-			auto repo = new Repository;
+			
+			auto repo2 = new Repository;
 
-			bool OK = repo->group_medication_by_price();
+			vector<Medicine> ReturnedMedicationsVector = repo2->group_medication_by_price();
 
-			Assert::IsFalse(OK);
+			Assert::IsTrue(ReturnedMedicationsVector.empty());
 
-			Medicine m1 = repo->add_medication("paracetamol", 49, 99, 10);
+			Medicine m1 = repo2->add_medication("paracetamol", 100, 10.99, 10);
 
-			OK = repo->group_medication_by_price();
+			Medicine m2 = repo2->add_medication("aspirina", 200, 14.50, 30);
 
-			Assert::IsTrue(OK);
+			Medicine m3 = repo2->add_medication("euthyrox", 100, 99.99, 62);
 
+			Medicine m4 = repo2->add_medication("nurofen", 500, 35.99, 17);
+
+			ReturnedMedicationsVector = repo2->group_medication_by_price();
+
+			Assert::IsFalse(ReturnedMedicationsVector.empty());
+
+			for (int i = 0; i < ReturnedMedicationsVector.size() - 1; i++)
+				Assert::IsTrue(ReturnedMedicationsVector[i].get_price() <= ReturnedMedicationsVector[i+1].get_price());
+			
 		}
 
 	};

@@ -129,12 +129,17 @@ void Controller::search_med_name()
 		std::cin >> StringToLookFor;
 	}
 
-	Repository::search_medication_by_name(StringToLookFor);
+	vector<Medicine> ToBePrinted = Repository::search_medication_by_name(StringToLookFor);
+	for (int i = 0; i < ToBePrinted.size(); i++)
+		cout << ToBePrinted[i].ToString() << "\n";
+	
+
 }
 
 void Controller::search_med_quantity()
 {
 	cout << "Geben sie die bestimmte Menge fur die sie suchen:\n";
+	cout << "Es werden alle Produkte(falls es gibt) gezeigt dessen Menge streng kleiner( < ) ist als die eingegebene Wert!\n";
 
 	int SearchedQuantity;
 
@@ -146,17 +151,17 @@ void Controller::search_med_quantity()
 		std::cin >> SearchedQuantity;
 	}
 
-	cout << "Es werden alle Produkte(falls es gibt) gezeigt dessen Menge streng kleiner( < ) ist als die eingegebene Wert!\n";
+	vector<Medicine> ToBePrinted = Repository::search_medication_by_quantity(SearchedQuantity);
+	for (int i = 0; i < ToBePrinted.size(); i++)
+		cout << ToBePrinted[i].ToString() << "\n";
 
-	Repository::search_medication_by_quantity(SearchedQuantity);
 }
 
 void Controller::group_by_price()
 {
-	Repository::group_medication_by_price();
+	vector<Medicine> ToBePrinted = Repository::group_medication_by_price();
+	for (int i = 0; i < ToBePrinted.size(); i++)
+		cout << ToBePrinted[i].ToString() << "\n";
 }
 
-Controller::~Controller()
-{
-
-}
+Controller::~Controller() {};

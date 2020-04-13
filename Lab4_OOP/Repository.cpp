@@ -91,87 +91,65 @@ Medicine Repository::update_medication(string name, double concentration, double
 
 }
 
-bool Repository::search_medication_by_name(string Z)
+vector<Medicine> Repository::search_medication_by_name(string StringToLookFor)
 {
+	vector<Medicine> TemporalMedicineReturnVector;
+
 	if (meds.empty() == false)
 	{
-		if (Z.empty())
+		if (StringToLookFor.empty())
 		{
-			cout << "Eingegebene Zeichenkette ist leer! Diese sind alle Produkte die enthalten sind:\n";
 
 			std::sort(meds.begin(), meds.end());
 
-			cout << " -------------------------------------------\n";
-
-			for (int i = 0; i != meds.size(); ++i)
-			{
-				cout << "Name: " << meds[i].get_name() << "\nKoncentration: " << meds[i].get_concentration() << "\nPreis: " << meds[i].get_price() << "\nMenge: " << meds[i].get_quantity() << endl;
-				cout << " -------------------------------------------\n";
-			}
-			cout << "\n";
-			cout << "Fertig!\n";
-
-			cout << " -------------------------------------------\n";
-			return true;
+			return meds;
 		}
 		else
 		{
-			cout << " -------------------------------------------\n";
+			
 			for (int i = 0; i != meds.size(); ++i)
 			{
-
-				std::size_t found = meds[i].get_name().find(Z);
+				
+				std::size_t found = meds[i].get_name().find(StringToLookFor);
 				if (found != std::string::npos)
 				{
-					cout << "Name: " << meds[i].get_name() << "\nKoncentration: " << meds[i].get_concentration() << "\nPreis: " << meds[i].get_price() << "\nMenge: " << meds[i].get_quantity() << endl;
-					cout << " -------------------------------------------\n";
+					TemporalMedicineReturnVector.push_back(meds[i]);
 				}
 			}
-			cout << "\n";
-			cout << "Fertig!\n";
-
-			cout << " -------------------------------------------\n";
-			return true;
+			return TemporalMedicineReturnVector;
 		}
 	}
 	else {
-		cout << "Container ist leer!\n";
-		return false;
+		return TemporalMedicineReturnVector;
 	}
 		
 
 }
 
-bool Repository::search_medication_by_quantity(int QQQQ)
+vector<Medicine> Repository::search_medication_by_quantity(int SearchedQuantity)
 {
+	vector<Medicine> TemporalMedicineReturnVector;
 	if (meds.empty() == false)
 	{
-		cout << " -------------------------------------------\n";
 		for (int i = 0; i != meds.size(); ++i)
 		{
-			if (meds[i].get_quantity() < QQQQ)
+			if (meds[i].get_quantity() < SearchedQuantity)
 			{
-				cout << "Name: " << meds[i].get_name() << "\nKoncentration: " << meds[i].get_concentration() << "\nPreis: " << meds[i].get_price()
-					<< "\nMenge: " << meds[i].get_quantity() << endl;
-
-				cout << " -------------------------------------------\n";
+				TemporalMedicineReturnVector.push_back(meds[i]);
 			}
 		}
 
-		cout << "Fertig!\n";
-		cout << " -------------------------------------------\n";
-		return true;
+		return TemporalMedicineReturnVector;
 	}
 	else {
-		cout << "Container ist leer!\n";
-		return false;
+		return TemporalMedicineReturnVector;
 	}
 		
 }
 
-bool Repository::group_medication_by_price()
+vector<Medicine> Repository::group_medication_by_price()
 {
-
+	vector<Medicine> TemporalMedicineReturnVector;
 	if (meds.empty() == false)
 	{
 		for (int i = 0; i != meds.size() - 1; ++i)
@@ -183,19 +161,10 @@ bool Repository::group_medication_by_price()
 					meds[j] = aux;
 				}
 
-		cout << " -------------------------------------------\n";
-		for (int i = 0; i != meds.size(); ++i)
-		{
-			cout << "Name: " << meds[i].get_name() << "\nPreis: " << meds[i].get_price() << endl;
-			cout << " -------------------------------------------\n";
-		}
-		cout << "Fertig!\n";
-		cout << " -------------------------------------------\n";
-		return true;
+		return meds;
 	}
 	else {
-		cout << "Container ist leer!\n";
-		return false;
+		return TemporalMedicineReturnVector;
 	}
 		
 }

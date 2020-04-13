@@ -2,8 +2,12 @@
 #include "Medikament.h"
 #include <iostream>
 #include <string>
+#include <sstream>
 
 using namespace std;
+
+Medicine::Medicine() {};
+
 
 Medicine::Medicine(string n, double c, double p, int q)
 {
@@ -13,11 +17,39 @@ Medicine::Medicine(string n, double c, double p, int q)
 	quantity = q;
 }
 
-Medicine::Medicine()
-{};
+Medicine::~Medicine() {}
+
+namespace patch
+{
+	template < typename T > std::string to_string(const T& n)
+	{
+		std::ostringstream stm;
+		stm << n;
+		return stm.str();
+	}
+}
+
+string Medicine::ToString()
+{
+	string StringRepresentationOfMedicine;
+
+	StringRepresentationOfMedicine = "Name: ";
+
+	StringRepresentationOfMedicine += name;
+
+	StringRepresentationOfMedicine += " Concentration: ";
+	StringRepresentationOfMedicine += patch::to_string(concentration);
+
+	StringRepresentationOfMedicine += " Price: ";
+	StringRepresentationOfMedicine += patch::to_string(price);
 
 
-Medicine::~Medicine()
-{};
+	StringRepresentationOfMedicine += " Quantity: ";
+	StringRepresentationOfMedicine += patch::to_string(quantity);
+
+	return StringRepresentationOfMedicine;
+}
+
+
 
 
