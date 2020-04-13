@@ -29,12 +29,23 @@ namespace UnitTest1
 		{
 			auto repo = new Repository;
 
-			auto med = repo->add_medication("aspirina", 10, 10, 10);
-
+			auto med = repo->add_medication("aspirina", 100, 10.99, 10);
 			Assert::AreEqual(string("aspirina"),med.get_name());
-			Assert::AreEqual(10.0, med.get_price());
-			Assert::AreEqual(10 , med.get_quantity());
-			Assert::AreEqual(10.0, med.get_concentration());
+			Assert::AreNotEqual(101.00, med.get_concentration());
+			Assert::AreEqual(10.99, med.get_price());
+			Assert::AreNotEqual(11 , med.get_quantity());
+
+			auto med1 = repo->add_medication("nurofen", 200, 88.88, 20);
+			Assert::AreEqual(string("nurofen"), med1.get_name());
+			Assert::AreEqual(200.00, med1.get_concentration());
+			Assert::AreNotEqual(88.89, med1.get_price());
+			Assert::AreEqual(20, med1.get_quantity());
+
+			auto med2 = repo->add_medication("ibuprofen", 150, 10.50, 45);
+			Assert::AreNotEqual(string("ibuprofenn"), med2.get_name());
+			Assert::AreEqual(150.00, med2.get_concentration());
+			Assert::AreNotEqual(10.40, med2.get_price());
+			Assert::AreNotEqual(1, med2.get_quantity());
 	
 		}
 
@@ -43,12 +54,14 @@ namespace UnitTest1
 			auto repo = new Repository;
 
 			Medicine m = repo->add_medication("bbb", 3, 3, 3);
+			Medicine m1 = repo->add_medication("ccc", 7, 7, 7);
+			Medicine m2 = repo->add_medication("aaa", 8, 8, 8);
 
 			auto med = repo->delete_medication("bbb", 3);
 
-			Assert::AreEqual(string("bbb"), med.get_name());
-			Assert::AreEqual(3.0, med.get_concentration());
-			Assert::AreEqual(3.0, med.get_price());
+			Assert::AreNotEqual(string("bbbb"), med.get_name());
+			Assert::AreEqual(3.00, med.get_concentration());
+			Assert::AreNotEqual(7.00, med.get_price());
 			Assert::AreEqual(3, med.get_quantity());
 
 		}
@@ -63,8 +76,9 @@ namespace UnitTest1
 
 			Assert::AreEqual(string("bbb"), med.get_name());
 			Assert::AreEqual(3.0, med.get_concentration());
-			Assert::AreEqual(3, med.get_quantity());
-			Assert::AreEqual(50.0, med.get_price());
+			Assert::AreNotEqual(4, med.get_quantity());
+			Assert::AreNotEqual(3.00, med.get_price());
+			Assert::AreEqual(50.00, med.get_price());
 
 		}
 
