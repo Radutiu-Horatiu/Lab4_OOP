@@ -14,7 +14,7 @@ public:
 
 	~Repository();
 
-	//returneaza medicamentul adauagt
+	//returns new meddication that was added
 	Medicine add_medication(string name, double concentration, double price, int quantity);
 
 	//returneaza medicamentul sters
@@ -30,5 +30,10 @@ public:
 	bool search_medication_by_quantity(int QQQQ);
 
 	bool group_meds_by_price();
+
+
+	void write_file(vector <Medicine> v, string filename);
+
+	void read_file(vector <Medicine>& v, string filename);
 };
 

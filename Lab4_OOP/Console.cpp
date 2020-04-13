@@ -15,7 +15,7 @@ Console::~Console()
 
 void Console::main()
 {
-	read_file(meds);
+	read_file(meds, "meds.txt");
 
 	cout << "Menu\n\n";
 
@@ -61,73 +61,7 @@ void Console::main()
 
 	}
 
-	write_file(meds);
+	write_file(meds, "meds.txt");
 
 }
 
-void write_file(vector <Medicine> v)
-{
-	ofstream fin;
-	fin.open("meds.txt", ofstream::out | ofstream::trunc);
-
-	for (int i = 0; i < v.size(); i++)
-		fin << v[i].get_name() << " " << v[i].get_concentration() << " " << v[i].get_price() << " " << v[i].get_quantity() << '\n';
-
-	fin.close();
-}
-
-void read_file(vector <Medicine>& v)
-{
-	ifstream myReadFile;
-	string word;
-	string filename = "meds.txt";
-	myReadFile.open(filename.c_str());
-
-	string name;
-	double con;
-	double price;
-	int quant;
-
-	string temp;
-
-	string::size_type sz;
-
-	while (!myReadFile.eof())
-	{
-		Medicine m;
-
-		myReadFile >> name;
-		if (name != "")
-			m.set_name(name);
-
-		myReadFile >> temp;
-		if (temp != "")
-		{
-			con = stod(temp, &sz);
-			m.set_concentration(con);
-		}
-
-		myReadFile >> temp;
-		if (temp != "")
-		{
-			price = stod(temp, &sz);
-			m.set_price(price);
-		}
-
-		myReadFile >> temp;
-		if (temp != "")
-		{
-			quant = stoi(temp, &sz);
-			m.set_quantity(quant);
-		}
-
-		if (name != "")
-			v.push_back(m);
-
-	}
-
-	if (v.size() > 0)
-		v.erase(v.end() - 1);
-	myReadFile.close();
-
-}
