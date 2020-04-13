@@ -2,10 +2,15 @@
 #include "Repository.h"
 class Controller: public Repository
 {
+private:
+
+
 public:
 	Controller();
 
 	~Controller();
+
+	//Controller Options:
 
 	//adds medicine
 	void add_med();

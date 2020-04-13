@@ -2,6 +2,9 @@
 #include "Controller.h"
 class Console : public Controller
 {
+private:
+
+
 public:
 	Console();
 
@@ -10,7 +13,3 @@ public:
 	void main();
 
 };
-
-void write_file(vector <Medicine> v);
-
-void read_file(vector <Medicine>& v);

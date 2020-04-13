@@ -15,7 +15,8 @@ Console::~Console()
 
 void Console::main()
 {
-	read_file(meds, "meds.txt");
+
+	read_file(meds_getter(), "meds.txt");
 
 	cout << "Menu\n\n";
 
@@ -61,7 +62,7 @@ void Console::main()
 
 	}
 
-	write_file(meds, "meds.txt");
+	write_file(meds_getter(), "meds.txt");
 
 }
 
