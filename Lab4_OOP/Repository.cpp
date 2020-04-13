@@ -169,7 +169,7 @@ bool Repository::search_medication_by_quantity(int QQQQ)
 		
 }
 
-bool Repository::group_meds_by_price()
+bool Repository::group_medication_by_price()
 {
 
 	if (meds.empty() == false)

@@ -67,11 +67,11 @@ public:
 	
 	Medicine get_element(string name, double concentration);
 
-	bool search_medication_by_name(string Z);
+	bool search_medication_by_name(string StringToLookFor);
 
-	bool search_medication_by_quantity(int QQQQ);
+	bool search_medication_by_quantity(int SearchedQuantity);
 
-	bool group_meds_by_price();
+	bool group_medication_by_price();
 
 	//write and read are for storing medication in the specified filename
 	void write_file(vector <Medicine> v, string filename);

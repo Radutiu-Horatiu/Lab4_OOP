@@ -104,13 +104,13 @@ namespace UnitTest1
 		{
 			auto repo = new Repository;
 
-			bool OK = repo->group_meds_by_price();
+			bool OK = repo->group_medication_by_price();
 
 			Assert::IsFalse(OK);
 
 			Medicine m1 = repo->add_medication("paracetamol", 49, 99, 10);
 
-			OK = repo->group_meds_by_price();
+			OK = repo->group_medication_by_price();
 
 			Assert::IsTrue(OK);
 

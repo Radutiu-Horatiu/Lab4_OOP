@@ -119,41 +119,41 @@ void Controller::search_med_name()
 {
 	cout << "Geben sie die bestimmte Zeichenkette fur die sie suchen:\n";
 
-	string Z;
+	string StringToLookFor;
 
-	cin >> Z;
+	cin >> StringToLookFor;
 	while (std::cin.fail()) {
 		std::cout << "Error" << std::endl;
 		std::cin.clear();
 		std::cin.ignore(256, '\n');
-		std::cin >> Z;
+		std::cin >> StringToLookFor;
 	}
 
-	Repository::search_medication_by_name(Z);
+	Repository::search_medication_by_name(StringToLookFor);
 }
 
 void Controller::search_med_quantity()
 {
 	cout << "Geben sie die bestimmte Menge fur die sie suchen:\n";
 
-	int QQQQ;
+	int SearchedQuantity;
 
-	cin >> QQQQ;
+	cin >> SearchedQuantity;
 	while (std::cin.fail()) {
 		std::cout << "Error" << std::endl;
 		std::cin.clear();
 		std::cin.ignore(256, '\n');
-		std::cin >> QQQQ;
+		std::cin >> SearchedQuantity;
 	}
 
 	cout << "Es werden alle Produkte(falls es gibt) gezeigt dessen Menge streng kleiner( < ) ist als die eingegebene Wert!\n";
 
-	Repository::search_medication_by_quantity(QQQQ);
+	Repository::search_medication_by_quantity(SearchedQuantity);
 }
 
 void Controller::group_by_price()
 {
-	Repository::group_meds_by_price();
+	Repository::group_medication_by_price();
 }
 
 Controller::~Controller()
