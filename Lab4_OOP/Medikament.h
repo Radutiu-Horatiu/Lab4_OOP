@@ -93,7 +93,7 @@ public:
 
 
 	////////////////////////////////////////////////////////////////////////////////////////////////////
-	/// <summary>	Sets a name of a Medicine. </summary>
+	/// <summary>	Sets a name of a Medicine to the given value. </summary>
 	///
 	/// <remarks>	Pinko, 4/13/2020. </remarks>
 	///
@@ -104,7 +104,7 @@ public:
 
 
 	////////////////////////////////////////////////////////////////////////////////////////////////////
-	/// <summary>	Sets a concentration of a Medicine. </summary>
+	/// <summary>	Sets a concentration of a Medicine to the given value. </summary>
 	///
 	/// <remarks>	Pinko, 4/13/2020. </remarks>
 	///
@@ -115,7 +115,7 @@ public:
 
 
 	////////////////////////////////////////////////////////////////////////////////////////////////////
-	/// <summary>	Sets a price of a Medicine. </summary>
+	/// <summary>	Sets a price of a Medicine to the given value. </summary>
 	///
 	/// <remarks>	Pinko, 4/13/2020. </remarks>
 	///
@@ -126,7 +126,7 @@ public:
 
 
 	////////////////////////////////////////////////////////////////////////////////////////////////////
-	/// <summary>	Sets a quantity of a Medicine. </summary>
+	/// <summary>	Sets a quantity of a Medicine to the given value. </summary>
 	///
 	/// <remarks>	Pinko, 4/13/2020. </remarks>
 	///
@@ -137,7 +137,7 @@ public:
 
 
 	////////////////////////////////////////////////////////////////////////////////////////////////////
-	/// <summary>	Adds to the quantity of a Medicine. </summary>
+	/// <summary>	Adds the given value to the quantity of a Medicine. </summary>
 	///
 	/// <remarks>	Pinko, 4/13/2020. </remarks>
 	///
